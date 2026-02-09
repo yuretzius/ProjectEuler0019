@@ -48,7 +48,6 @@ def findDay(day, month, year) :
     
 print("weekday as a num:", findDay(25, 12, 2027))
 
-
 # what can one do with python's date|time strings
 # table of all possible format codes and examples: https://www.geeksforgeeks.org/python/python-time-strptime-function/
 
