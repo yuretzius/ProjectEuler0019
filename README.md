@@ -26,7 +26,7 @@ that's why I am sharing my work here for reference and educational purposes.
 #######################################################################################<br>
 
 One way of doing this is simple. Just use python's date/time libraries, e.g. time.
-Here's a simple demo:
+Here's a demo:
 
 ```python
 d = time.strptime("25 12 2027", "%d %m %Y")
