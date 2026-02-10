@@ -9,9 +9,9 @@ int SF (int w) {
 
 int t[12] = {5, 1, 0, 3, 5, 1, 3, 6, 2, 4, 0, 2};
 
-int findDay(int day, int month, unsigned long year) {
+int findDay(int day, int month, int year) {
         if (month < 3) year -= 1;
-        unsigned long century = year/ 100;
+        int century = year/ 100;
         century = (2 + 5*(century % 4)) % 7;
         year %= 100;
         year = (year + 11*(year&0x1)) >> 1;
@@ -23,39 +23,37 @@ int findDay(int day, int month, unsigned long year) {
     
     
 int main() {
-    int T, d1, m1, d2, m2; 
-    unsigned long y1, y2, counter;
-    //cin >> T;
-    T = 1;
-    for (int a0 = 0; a0 != T; a0++) {
-        cin >> y1 >> m1 >> d1;
-        cin >> y2 >> m2 >> d2;
-        counter = 0;
-        if (d1 == 1) counter += findDay(d1, m1, y1);
-        if (y1 == y2) {
-            if (m1 != 12) {
-                for(int month = m1+1; month != m2+1; month++) {
-                    counter += findDay(1, month, y1);
-                }
+    int d1, m1, d2, m2; 
+    int y1, y2, counter;
+    cout << "start date? (YYYY MM DD)" << endl;
+    cin >> y1 >> m1 >> d1;
+    cout << "end date? (YYYY MM DD)" << endl;
+    cin >> y2 >> m2 >> d2;
+    counter = 0;
+    if (d1 == 1) counter += findDay(d1, m1, y1);
+    if (y1 == y2) {
+        if (m1 != 12) {
+            for(int month = m1+1; month != m2+1; month++) {
+                counter += findDay(1, month, y1);
             }
         }
-        else {
-            if (m1 != 12) {
-                for(int month = m1+1; month != 13; month++) {
-                    counter += findDay(1, month, y1);
-                }
-            }
-            for(int month = 1; month != m2 + 1; month++) {
-                counter += findDay(1, month, y2);
-            }
-            for (unsigned long year = y1+1; year != y2; year++) {
-                for (int month = 1; month != 13; month++) {
-                    counter += findDay(1, month, year);
-                }
-                    
-            }
-        }
-        cout << counter << endl;
     }
+    else {
+        if (m1 != 12) {
+            for(int month = m1+1; month != 13; month++) {
+                counter += findDay(1, month, y1);
+            }
+        }
+        for(int month = 1; month != m2 + 1; month++) {
+            counter += findDay(1, month, y2);
+        }
+        for (int year = y1+1; year != y2; year++) {
+            for (int month = 1; month != 13; month++) {
+                counter += findDay(1, month, year);
+            }
+                
+        }
+    }
+    cout << counter << endl;
     return 0;
 }
