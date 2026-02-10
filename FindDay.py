@@ -22,7 +22,7 @@ import time
 # And then 2+7+7+7+7 = Jan 30 is a doomsday, so Feb 6 is one too, and
 # Feb's shift 7 - 6 = 1. Done!  
 
-t = (5, 1, 0, 3, 5, 1, 3, 6, 2, 4, 0, 2)
+mshift = (5, 1, 0, 3, 5, 1, 3, 6, 2, 4, 0, 2)
 
 def findDay(day, month, year) :
         if month < 3: year -= 1 # same doomsday works from March to February, otherwise have to bother with leap years
@@ -41,16 +41,16 @@ def findDay(day, month, year) :
         print("year's drift:", drift)
         doomsday = (anchor + drift)%7
         print("year's doomsday:", doomsday)
-        print("month's doomsday shift:", t[month-1])
-        w = (doomsday + t[month-1] + day) % 7
+        print("month's doomsday shift:", mshift[month-1])
+        w = (doomsday + mshift[month-1] + day) % 7
         # 0 means Sunday
         return w   
     
-print("weekday as a num:", findDay(25, 12, 2027))
+print("weekday as a num:", findDay(1, 5, 2026))
 
 # what can one do with python's date|time strings
 # table of all possible format codes and examples: https://www.geeksforgeeks.org/python/python-time-strptime-function/
 
-d = time.strptime("25 12 2027", "%d %m %Y")
+d = time.strptime("1 5 2026", "%d %m %Y")
 print(time.strftime("weekday as a word: %A, weekday as a num: %w, week#: %W, day: %d, month as a word: %b, month as a num: %m, year: %Y", d))
 
